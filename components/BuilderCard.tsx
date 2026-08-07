@@ -21,19 +21,21 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
       <div
         ref={ref}
         className={cn(
-          "relative aspect-[4/5] w-full max-w-sm overflow-hidden border-2 border-[#17372a] bg-[#fff9ed] text-[#17372a] shadow-[9px_9px_0_#e46647]",
+          "relative flex aspect-[4/5] w-full max-w-sm flex-col overflow-hidden border-2 border-[#17372a] bg-[#fff9ed] text-[#17372a] shadow-[9px_9px_0_#e46647]",
           className,
         )}
       >
-        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[39%] bg-[#0b6839]" />
-        <div
-          aria-hidden="true"
-          className="absolute -right-12 top-8 h-40 w-40 rounded-full border-[18px] border-[#f4d35e]/70"
-        />
-        <div aria-hidden="true" className="absolute left-0 top-[39%] h-px w-full bg-[#17372a]/20" />
+        {/* Header zone: height follows its own content, with a floor that
+            matches the intended proportions for short names. Wrapped
+            two-line names simply grow this section instead of spilling
+            past a fixed-height overlay. */}
+        <div className="relative min-h-[39%] shrink-0 border-b border-[#17372a]/20 bg-[#0b6839] px-5 pt-5 pb-6 text-[#fff9ed] sm:px-6 sm:pt-6">
+          <div
+            aria-hidden="true"
+            className="absolute -right-12 top-8 h-40 w-40 rounded-full border-[18px] border-[#f4d35e]/70"
+          />
 
-        <div className="relative flex h-full flex-col p-5 sm:p-6">
-          <div className="flex items-start justify-between">
+          <div className="relative flex items-start justify-between">
             <div className="flex items-center gap-2.5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -50,7 +52,7 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
             </span>
           </div>
 
-          <div className="mt-7 flex items-end gap-4">
+          <div className="relative mt-7 flex items-end gap-4">
             <div className="shrink-0 border-2 border-[#fff9ed] bg-[#f4d35e] p-1 shadow-[3px_3px_0_rgba(23,55,42,0.35)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -63,13 +65,16 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#f4d35e]">
                 Here to build
               </p>
-              <h2 className="mt-1 break-words font-heading text-2xl font-semibold leading-none tracking-tight sm:text-[1.75rem]">
+              <h2 className="mt-1 break-words font-heading text-2xl font-semibold leading-tight tracking-tight sm:text-[1.75rem]">
                 {displayName}
               </h2>
             </div>
           </div>
+        </div>
 
-          <div className="mt-5">
+        {/* Body zone: fills whatever height remains. */}
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#17372a]/50">
               What I do
             </p>
