@@ -239,7 +239,7 @@ export default function Home() {
             <ProfileFrame ref={profileRef} imageSrc={croppedImage} />
             <div className="flex flex-wrap items-center justify-center gap-3">
               <DownloadButton targetRef={profileRef} filenamePrefix="profile-frame" />
-              <ShareButton />
+              <ShareButton targetRef={profileRef} filenamePrefix="profile-frame" />
             </div>
             <div className="flex flex-wrap justify-center gap-3">
               <Button type="button" variant="ghost" onClick={() => setStep("format")}>
@@ -270,7 +270,7 @@ export default function Home() {
             />
             <div className="flex flex-wrap items-center justify-center gap-3">
               <DownloadButton targetRef={cardRef} name={name} filenamePrefix="builder-id" />
-              <ShareButton />
+              <ShareButton targetRef={cardRef} name={name} filenamePrefix="builder-id" />
             </div>
             <div className="flex flex-wrap justify-center gap-3">
               <Button type="button" variant="ghost" onClick={() => setStep("format")}>

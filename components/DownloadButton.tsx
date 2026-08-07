@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useState, type RefObject } from "react";
-import { toPng } from "html-to-image";
 import { Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn, PRIMARY_CTA_CLASS, slugify } from "@/lib/utils";
+import { exportNodeToPngBlob } from "@/lib/exportImage";
 
 export type DownloadButtonProps = {
   targetRef: RefObject<HTMLElement | null>;
@@ -14,14 +14,12 @@ export type DownloadButtonProps = {
   minWidth?: number;
 };
 
-const DEFAULT_MIN_WIDTH = 2048;
-
 export function DownloadButton({
   targetRef,
   name = "",
   filenamePrefix = "builder-id",
   label = "Download PNG",
-  minWidth = DEFAULT_MIN_WIDTH,
+  minWidth,
 }: DownloadButtonProps) {
   const [isExporting, setIsExporting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,21 +31,17 @@ export function DownloadButton({
     setError(null);
     setIsExporting(true);
     try {
-      const width = node.getBoundingClientRect().width || node.offsetWidth;
-      const pixelRatio = Math.max(2, Math.ceil(minWidth / width));
-
-      const dataUrl = await toPng(node, {
-        pixelRatio,
-        cacheBust: true,
-      });
-
+      const blob = await exportNodeToPngBlob(node, minWidth);
       const slug = slugify(name);
+      const objectUrl = URL.createObjectURL(blob);
+
       const link = document.createElement("a");
-      link.href = dataUrl;
+      link.href = objectUrl;
       link.download = slug ? `${filenamePrefix}-${slug}.png` : `${filenamePrefix}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     } catch (err) {
       console.error(err);
       setError("Couldn't generate the image. Please try again.");

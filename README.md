@@ -11,7 +11,7 @@ A single-page generator for the Hacker House Goa 2026 shortlisting task. Upload 
   - **Profile Frame** — circular photo frame with a gold/magenta gradient ring and event branding
   - **Builder Card** — name, role, an auto-generated "builder title," and a stack chip list on a collectible card
 - High-resolution PNG export (≥2048px wide, regardless of on-screen size) via `html-to-image`
-- One-click **Share on X** with prefilled tweet text and `#FrameInGoa`
+- One-click **Share on X** with the caption and `#FrameInGoa` prefilled — on devices that support the Web Share API (most phones), the actual generated image is attached directly via the native share sheet; desktop falls back to a prefilled X compose window
 - Dark, glassmorphic UI themed on the real Hacker House Goa logo colors (forest green / gold / magenta), built with Tailwind CSS, shadcn/ui, and Framer Motion
 - Fully responsive, mobile-first
 
