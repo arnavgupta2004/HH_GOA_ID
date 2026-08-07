@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { UploadSection } from "@/components/UploadSection";
 import { CropEditor } from "@/components/CropEditor";
 import { BuilderCard } from "@/components/BuilderCard";
 import { StackSelector } from "@/components/StackSelector";
+import { DownloadButton } from "@/components/DownloadButton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +18,7 @@ export default function Home() {
   const [step, setStep] = useState<Step>("upload");
   const [rawImage, setRawImage] = useState<string | null>(null);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -146,15 +148,17 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="flex flex-col items-center gap-6"
+            className="flex w-full max-w-sm flex-col items-center gap-6"
           >
             <BuilderCard
+              ref={cardRef}
               imageSrc={croppedImage}
               name={name}
               role={role}
               builderTitle={builderTitle}
               stack={stack}
             />
+            <DownloadButton targetRef={cardRef} name={name} filenamePrefix="builder-id" />
             <div className="flex gap-3">
               <Button type="button" variant="ghost" onClick={() => setStep("details")}>
                 Edit details
