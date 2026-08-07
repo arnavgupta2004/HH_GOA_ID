@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import { QrCode, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getGradient } from "@/lib/gradients";
 
 export type BuilderCardProps = {
   imageSrc: string;
@@ -14,10 +13,7 @@ export type BuilderCardProps = {
 };
 
 export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
-  function BuilderCard(
-    { imageSrc, name, role, builderTitle, stack, gradientIndex = 0, className },
-    ref,
-  ) {
+  function BuilderCard({ imageSrc, name, role, builderTitle, stack, className }, ref) {
     const displayName = name.trim() || "Your Name";
     const displayRole = role.trim() || "Builder";
 
@@ -25,92 +21,90 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
       <div
         ref={ref}
         className={cn(
-          "relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-sm border-2 border-[#17372a]/50 shadow-[8px_8px_0_rgba(228,102,71,0.8)]",
+          "relative aspect-[4/5] w-full max-w-sm overflow-hidden border-2 border-[#17372a] bg-[#fff9ed] text-[#17372a] shadow-[9px_9px_0_#e46647]",
           className,
         )}
-        style={{ background: getGradient(gradientIndex) }}
       >
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-[#EA0A60]/30 blur-3xl" />
-          <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full bg-[#FAE323]/20 blur-3xl" />
-          <div
-            className="absolute inset-0 opacity-[0.1]"
-            style={{
-              backgroundImage: "url(/decorative-pattern.svg)",
-              backgroundSize: "160px 160px",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/55" />
-        </div>
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[39%] bg-[#0b6839]" />
+        <div
+          aria-hidden="true"
+          className="absolute -right-12 top-8 h-40 w-40 rounded-full border-[18px] border-[#f4d35e]/70"
+        />
+        <div aria-hidden="true" className="absolute left-0 top-[39%] h-px w-full bg-[#17372a]/20" />
 
-        <div className="relative flex h-full flex-col p-6 sm:p-7">
-          <div className="flex items-center justify-between">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hh-logo.jpg"
-              alt="Hacker House Goa 2026"
-              className="h-8 w-8 rounded-sm ring-1 ring-white/25"
-            />
-            <span className="border border-white/40 bg-[#f4d35e] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#17372a]">
-              Goa crew
+        <div className="relative flex h-full flex-col p-5 sm:p-6">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hh-logo.jpg"
+                alt="Hacker House Goa 2026"
+                className="h-9 w-9 rounded-sm ring-1 ring-white/50"
+              />
+              <p className="text-[10px] font-bold uppercase leading-tight tracking-[0.16em] text-[#fff9ed]">
+                Hacker House<br />Goa 2026
+              </p>
+            </div>
+            <span className="border border-[#fff9ed]/70 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-[#fff9ed]">
+              Field pass
             </span>
           </div>
 
-          <div className="mt-2 flex flex-1 flex-col items-center justify-center text-center">
-            <div className="relative shrink-0">
-              <div
-                className="absolute inset-0 -z-10 rounded-3xl bg-white/25 blur-2xl"
-                aria-hidden="true"
-              />
+          <div className="mt-7 flex items-end gap-4">
+            <div className="shrink-0 border-2 border-[#fff9ed] bg-[#f4d35e] p-1 shadow-[3px_3px_0_rgba(23,55,42,0.35)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageSrc}
                 alt={`${displayName}'s photo`}
-                className="h-24 w-24 rounded-sm object-cover ring-2 ring-white/70 sm:h-36 sm:w-36"
+                className="h-24 w-24 object-cover sm:h-28 sm:w-28"
               />
             </div>
+            <div className="pb-1 text-[#fff9ed]">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#f4d35e]">
+                Here to build
+              </p>
+              <h2 className="mt-1 font-heading text-2xl font-semibold leading-none tracking-tight sm:text-[1.75rem]">
+                {displayName}
+              </h2>
+            </div>
+          </div>
 
-            <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-white sm:mt-4 sm:text-[1.9rem]">
-              {displayName}
-            </h2>
-            <p className="mt-0.5 text-sm text-white/70">{displayRole}</p>
-
-            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white sm:mt-3">
+          <div className="mt-5">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#17372a]/50">
+              What I do
+            </p>
+            <p className="mt-1 text-base font-semibold leading-tight">{displayRole}</p>
+            <div className="mt-3 inline-flex items-center gap-1.5 bg-[#f4d35e] px-2.5 py-1 text-xs font-semibold">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
               {builderTitle}
             </div>
-
-            {stack.length > 0 && (
-              <div className="mt-3 flex flex-wrap justify-center gap-1.5 px-2 sm:mt-4">
-                {stack.slice(0, 6).map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full bg-black/20 px-2.5 py-1 text-[11px] font-medium text-white/85 ring-1 ring-white/15"
-                  >
-                    {item}
-                  </span>
-                ))}
-                {stack.length > 6 && (
-                  <span className="rounded-full bg-black/20 px-2.5 py-1 text-[11px] font-medium text-white/85 ring-1 ring-white/15">
-                    +{stack.length - 6}
-                  </span>
-                )}
-              </div>
-            )}
           </div>
 
-          <div className="mt-4 flex items-end justify-between">
-            <div className="text-left">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">
-                Hacker House
-              </p>
-              <p className="text-sm font-semibold text-white">Goa 2026</p>
+          {stack.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {stack.slice(0, 6).map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[#17372a]/30 px-2.5 py-1 text-[10px] font-semibold"
+                >
+                  {item}
+                </span>
+              ))}
+              {stack.length > 6 && (
+                <span className="rounded-full border border-[#17372a]/30 px-2.5 py-1 text-[10px] font-semibold">
+                  +{stack.length - 6}
+                </span>
+              )}
             </div>
-            <div
-              className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/95"
-              aria-hidden="true"
-            >
-              <QrCode className="h-7 w-7 text-black" />
+          )}
+
+          <div className="mt-auto flex items-end justify-between border-t border-dashed border-[#17372a]/35 pt-4">
+            <div>
+              <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#e46647]">Arrival note</p>
+              <p className="mt-0.5 font-heading text-lg font-semibold">See you in Goa.</p>
+            </div>
+            <div className="flex h-11 w-11 items-center justify-center border border-[#17372a] bg-[#fff9ed]" aria-hidden="true">
+              <QrCode className="h-7 w-7" />
             </div>
           </div>
         </div>
