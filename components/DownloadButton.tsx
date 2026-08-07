@@ -61,7 +61,7 @@ export function DownloadButton({
         type="button"
         onClick={handleDownload}
         disabled={isExporting}
-        className="gap-2"
+        className="gap-2 bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
       >
         {isExporting ? (
           <>

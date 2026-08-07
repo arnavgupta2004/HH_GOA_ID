@@ -2,17 +2,26 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 import { UploadSection } from "@/components/UploadSection";
 import { CropEditor } from "@/components/CropEditor";
 import { BuilderCard } from "@/components/BuilderCard";
 import { StackSelector } from "@/components/StackSelector";
 import { DownloadButton } from "@/components/DownloadButton";
+import { StepIndicator, type StepIndicatorStep } from "@/components/StepIndicator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getRandomBuilderTitle, type BuilderTitle } from "@/lib/builderTitles";
 
 type Step = "upload" | "crop" | "details" | "card";
+
+const STEPS: StepIndicatorStep[] = [
+  { key: "upload", label: "Upload" },
+  { key: "crop", label: "Crop" },
+  { key: "details", label: "Details" },
+  { key: "card", label: "Card" },
+];
 
 export default function Home() {
   const [step, setStep] = useState<Step>("upload");
@@ -48,15 +57,24 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-10 px-6 py-16">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          Builder ID — Hacker House Goa 2026
+    <main className="flex flex-1 flex-col items-center gap-12 px-6 py-16 sm:py-24">
+      <div className="flex flex-col items-center gap-5 text-center">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/60 backdrop-blur-sm">
+          <Sparkles className="h-3.5 w-3.5 text-emerald-300" aria-hidden="true" />
+          Hacker House Goa 2026
+        </span>
+        <h1 className="max-w-lg text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
+          Craft your{" "}
+          <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-fuchsia-300 bg-clip-text text-transparent">
+            Builder ID
+          </span>
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Upload a photo to get started.
+        <p className="max-w-sm text-balance text-sm text-white/50 sm:text-base">
+          Upload a photo, add your details, and generate a shareable card before you land in Goa.
         </p>
       </div>
+
+      <StepIndicator steps={STEPS} currentKey={step} />
 
       <AnimatePresence mode="wait">
         {step === "upload" && (
@@ -134,7 +152,7 @@ export default function Home() {
                 type="button"
                 onClick={() => setStep("card")}
                 disabled={!name.trim()}
-                className="flex-[2]"
+                className="flex-[2] bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
               >
                 Generate card
               </Button>
