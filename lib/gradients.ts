@@ -7,3 +7,6 @@ export const GOA_GRADIENTS = [
 export function getGradient(index = 0): string {
   return GOA_GRADIENTS[index % GOA_GRADIENTS.length];
 }
+
+export const RING_GRADIENT =
+  "conic-gradient(from 180deg, #2dd4bf, #34d399, #a78bfa, #f472b6, #fbbf24, #2dd4bf)";

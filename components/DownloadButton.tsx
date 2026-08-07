@@ -8,7 +8,7 @@ import { slugify } from "@/lib/utils";
 
 export type DownloadButtonProps = {
   targetRef: RefObject<HTMLElement | null>;
-  name: string;
+  name?: string;
   filenamePrefix?: string;
   label?: string;
   minWidth?: number;
@@ -18,7 +18,7 @@ const DEFAULT_MIN_WIDTH = 2048;
 
 export function DownloadButton({
   targetRef,
-  name,
+  name = "",
   filenamePrefix = "builder-id",
   label = "Download PNG",
   minWidth = DEFAULT_MIN_WIDTH,
@@ -41,9 +41,10 @@ export function DownloadButton({
         cacheBust: true,
       });
 
+      const slug = slugify(name);
       const link = document.createElement("a");
       link.href = dataUrl;
-      link.download = `${filenamePrefix}-${slugify(name) || "builder"}.png`;
+      link.download = slug ? `${filenamePrefix}-${slug}.png` : `${filenamePrefix}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

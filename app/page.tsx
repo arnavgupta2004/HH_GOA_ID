@@ -5,29 +5,39 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { UploadSection } from "@/components/UploadSection";
 import { CropEditor } from "@/components/CropEditor";
+import { ProfileFrame } from "@/components/ProfileFrame";
 import { BuilderCard } from "@/components/BuilderCard";
 import { StackSelector } from "@/components/StackSelector";
 import { DownloadButton } from "@/components/DownloadButton";
+import { ShareButton } from "@/components/ShareButton";
+import { ToggleFormat, type Format } from "@/components/ToggleFormat";
 import { StepIndicator, type StepIndicatorStep } from "@/components/StepIndicator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getRandomBuilderTitle, type BuilderTitle } from "@/lib/builderTitles";
 
-type Step = "upload" | "crop" | "details" | "card";
+type Step = "upload" | "crop" | "format" | "details" | "profile" | "card";
 
-const STEPS: StepIndicatorStep[] = [
-  { key: "upload", label: "Upload" },
-  { key: "crop", label: "Crop" },
-  { key: "details", label: "Details" },
-  { key: "card", label: "Card" },
-];
+function getSteps(format: Format): StepIndicatorStep[] {
+  const base: StepIndicatorStep[] = [
+    { key: "upload", label: "Upload" },
+    { key: "crop", label: "Crop" },
+    { key: "format", label: "Format" },
+  ];
+  if (format === "profile") {
+    return [...base, { key: "profile", label: "Frame" }];
+  }
+  return [...base, { key: "details", label: "Details" }, { key: "card", label: "Card" }];
+}
 
 export default function Home() {
   const [step, setStep] = useState<Step>("upload");
   const [rawImage, setRawImage] = useState<string | null>(null);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
+  const [format, setFormat] = useState<Format>("profile");
   const cardRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -41,14 +51,23 @@ export default function Home() {
 
   const handleCropComplete = (result: string) => {
     setCroppedImage(result);
-    setBuilderTitle(getRandomBuilderTitle());
-    setStep("details");
+    setStep("format");
+  };
+
+  const handleContinueFromFormat = () => {
+    if (format === "card") {
+      setBuilderTitle((prev) => prev ?? getRandomBuilderTitle());
+      setStep("details");
+    } else {
+      setStep("profile");
+    }
   };
 
   const handleReset = () => {
     if (rawImage) URL.revokeObjectURL(rawImage);
     setRawImage(null);
     setCroppedImage(null);
+    setFormat("profile");
     setName("");
     setRole("");
     setStack([]);
@@ -70,11 +89,11 @@ export default function Home() {
           </span>
         </h1>
         <p className="max-w-sm text-balance text-sm text-white/50 sm:text-base">
-          Upload a photo, add your details, and generate a shareable card before you land in Goa.
+          Upload a photo, pick a format, and generate a shareable card before you land in Goa.
         </p>
       </div>
 
-      <StepIndicator steps={STEPS} currentKey={step} />
+      <StepIndicator steps={getSteps(format)} currentKey={step} />
 
       <AnimatePresence mode="wait">
         {step === "upload" && (
@@ -90,6 +109,54 @@ export default function Home() {
             onCropComplete={handleCropComplete}
             onCancel={handleReset}
           />
+        )}
+
+        {step === "format" && croppedImage && (
+          <motion.div
+            key="format"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="w-full max-w-sm space-y-6 rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-xl"
+          >
+            <div className="flex justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={croppedImage}
+                alt="Your cropped photo"
+                className="h-20 w-20 rounded-full object-cover ring-1 ring-white/15"
+              />
+            </div>
+
+            <div className="flex justify-center">
+              <ToggleFormat value={format} onChange={setFormat} />
+            </div>
+
+            <p className="text-sm text-white/50">
+              {format === "card"
+                ? "A shareable card with your name, role, and stack."
+                : "A circular frame, ready for your profile picture."}
+            </p>
+
+            <div className="flex gap-3 pt-1">
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => setStep("crop")}
+                className="flex-1"
+              >
+                Back
+              </Button>
+              <Button
+                type="button"
+                onClick={handleContinueFromFormat}
+                className="flex-[2] bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
+              >
+                Continue
+              </Button>
+            </div>
+          </motion.div>
         )}
 
         {step === "details" && croppedImage && (
@@ -143,7 +210,7 @@ export default function Home() {
               <Button
                 type="button"
                 variant="ghost"
-                onClick={() => setStep("crop")}
+                onClick={() => setStep("format")}
                 className="flex-1"
               >
                 Back
@@ -155,6 +222,30 @@ export default function Home() {
                 className="flex-[2] bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
               >
                 Generate card
+              </Button>
+            </div>
+          </motion.div>
+        )}
+
+        {step === "profile" && croppedImage && (
+          <motion.div
+            key="profile"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="flex w-full max-w-sm flex-col items-center gap-6"
+          >
+            <ProfileFrame ref={profileRef} imageSrc={croppedImage} />
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <DownloadButton targetRef={profileRef} filenamePrefix="profile-frame" />
+              <ShareButton />
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button type="button" variant="ghost" onClick={() => setStep("format")}>
+                Change format
+              </Button>
+              <Button type="button" variant="outline" onClick={handleReset}>
+                Start over
               </Button>
             </div>
           </motion.div>
@@ -176,8 +267,14 @@ export default function Home() {
               builderTitle={builderTitle}
               stack={stack}
             />
-            <DownloadButton targetRef={cardRef} name={name} filenamePrefix="builder-id" />
-            <div className="flex gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <DownloadButton targetRef={cardRef} name={name} filenamePrefix="builder-id" />
+              <ShareButton />
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button type="button" variant="ghost" onClick={() => setStep("format")}>
+                Change format
+              </Button>
               <Button type="button" variant="ghost" onClick={() => setStep("details")}>
                 Edit details
               </Button>
