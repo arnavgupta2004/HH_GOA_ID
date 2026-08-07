@@ -1,10 +1,8 @@
 "use client";
 
-import { useCallback, useState, type RefObject } from "react";
-import { Loader2 } from "lucide-react";
+import { useCallback, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
-import { cn, slugify } from "@/lib/utils";
-import { exportNodeToPngBlob } from "@/lib/exportImage";
+import { cn } from "@/lib/utils";
 
 export type ShareButtonProps = {
   targetRef: RefObject<HTMLElement | null>;
@@ -18,74 +16,27 @@ const DEFAULT_TWEET_TEXT =
   "Heading to Hacker House Goa 🌴\n\nHere's my Builder ID.\n\n#FrameInGoa";
 
 export function ShareButton({
-  targetRef,
-  name = "",
-  filenamePrefix = "builder-id",
   text = DEFAULT_TWEET_TEXT,
   className,
 }: ShareButtonProps) {
-  const [isSharing, setIsSharing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleShare = useCallback(async () => {
-    const node = targetRef.current;
-    if (!node) return;
-
-    setError(null);
-    setIsSharing(true);
-    try {
-      const blob = await exportNodeToPngBlob(node);
-      const slug = slugify(name);
-      const filename = slug ? `${filenamePrefix}-${slug}.png` : `${filenamePrefix}.png`;
-      const file = new File([blob], filename, { type: "image/png" });
-
-      // On devices that support sharing files (most mobile browsers),
-      // this hands the real image + caption straight to the OS share
-      // sheet, so sharing to X attaches the actual graphic.
-      if (typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
-        await navigator.share({ text, files: [file] });
-        return;
-      }
-
-      // Desktop fallback: X's web intent has no way to attach a file, so
-      // open a prefilled compose window and let the user attach the PNG
-      // they've already downloaded.
-      const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-      window.open(intentUrl, "_blank", "noopener,noreferrer");
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") {
-        // User dismissed the native share sheet — not an error.
-        return;
-      }
-      console.error(err);
-      setError("Couldn't share. Try downloading instead.");
-    } finally {
-      setIsSharing(false);
-    }
-  }, [targetRef, name, filenamePrefix, text]);
+  const handleShare = useCallback(() => {
+    // An intent URL cannot attach a browser-generated image, but it can
+    // reliably open X's post composer with the message prefilled. Navigating
+    // the current tab avoids popup blockers swallowing window.open().
+    const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    window.location.assign(intentUrl);
+  }, [text]);
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      <Button
-        type="button"
-        variant="outline"
-        onClick={handleShare}
-        disabled={isSharing}
-        className={cn("gap-2", className)}
-      >
-        {isSharing ? (
-          <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
-        ) : (
-          <XLogo className="h-3.5 w-3.5" aria-hidden="true" />
-        )}
-        Share on X
-      </Button>
-      {error && (
-        <p role="alert" className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
-    </div>
+    <Button
+      type="button"
+      variant="outline"
+      onClick={handleShare}
+      className={cn("gap-2", className)}
+    >
+      <XLogo className="h-3.5 w-3.5" aria-hidden="true" />
+      Post on X
+    </Button>
   );
 }
 
