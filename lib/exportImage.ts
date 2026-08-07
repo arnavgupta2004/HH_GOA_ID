@@ -18,7 +18,7 @@ export async function exportNodeToPngBlob(
     filter: (n: HTMLElement) => {
       // Avoid letting html-to-image render the photo, which causes
       // square corners in Safari due to a bug with border-radius and overflow.
-      if (n.tagName === "IMG" && "exportPhoto" in n.dataset) {
+      if (n.tagName === "IMG" && n.hasAttribute("data-export-photo")) {
         return false;
       }
       return true;

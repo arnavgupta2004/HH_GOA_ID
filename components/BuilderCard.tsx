@@ -40,12 +40,15 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
 
           <div className="relative flex items-start justify-between">
             <div className="flex items-center gap-2.5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/hh-logo.jpg"
-                alt="Hacker House Goa 2026"
-                className="h-9 w-9 rounded-sm ring-1 ring-white/50"
-              />
+              <div className="flex h-9 w-9 overflow-hidden rounded-sm ring-1 ring-white/50">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/hh-logo.jpg"
+                  alt="Hacker House Goa 2026"
+                  data-export-photo
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <p className="text-[10px] font-bold uppercase leading-tight tracking-[0.16em] text-[#fff9ed]">
                 Hacker House<br />Goa 2026
               </p>

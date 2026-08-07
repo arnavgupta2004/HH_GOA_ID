@@ -38,27 +38,32 @@ export const ProfileFrame = forwardRef<HTMLDivElement, ProfileFrameProps>(
             </span>
           </div>
 
-          <div className="relative mt-auto mb-auto aspect-square w-[72%] rounded-full border-[13px] border-[#f4d35e] bg-[#fff9ed] p-[3%] shadow-[5px_5px_0_rgba(23,55,42,0.35)]">
-            <div className="h-full w-full overflow-hidden rounded-full border-2 border-[#17372a]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={imageSrc}
-                alt="Profile"
-                data-export-photo
-                data-export-shape="circle"
-                className="h-full w-full object-cover"
-              />
+          <div className="mt-auto mb-auto flex w-full items-center justify-center">
+            <div className="relative aspect-square w-[72%] rounded-full border-[13px] border-[#f4d35e] bg-[#fff9ed] p-[3%] shadow-[5px_5px_0_rgba(23,55,42,0.35)]">
+              <div className="h-full w-full overflow-hidden rounded-full border-2 border-[#17372a]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageSrc}
+                  alt="Profile"
+                  data-export-photo
+                  data-export-shape="circle"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
           </div>
 
           <div className="flex w-full items-end justify-between text-[#fff9ed]">
             <p className="max-w-32 font-heading text-lg font-semibold leading-none">Meet me where ideas get sunburnt.</p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hh-logo.jpg"
-              alt="Hacker House Goa 2026"
-              className="h-11 w-11 rounded-sm border-2 border-[#fff9ed]"
-            />
+            <div className="flex h-11 w-11 overflow-hidden rounded-sm border-2 border-[#fff9ed]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hh-logo.jpg"
+                alt="Hacker House Goa 2026"
+                data-export-photo
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
