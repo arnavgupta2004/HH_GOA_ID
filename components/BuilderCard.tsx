@@ -25,7 +25,7 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
       <div
         ref={ref}
         className={cn(
-          "relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.65)]",
+          "relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-sm border-2 border-[#17372a]/50 shadow-[8px_8px_0_rgba(228,102,71,0.8)]",
           className,
         )}
         style={{ background: getGradient(gradientIndex) }}
@@ -49,10 +49,10 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
             <img
               src="/hh-logo.jpg"
               alt="Hacker House Goa 2026"
-              className="h-8 w-8 rounded-md ring-1 ring-white/25"
+              className="h-8 w-8 rounded-sm ring-1 ring-white/25"
             />
-            <span className="rounded-full border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/80 backdrop-blur-sm">
-              Builder
+            <span className="border border-white/40 bg-[#f4d35e] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#17372a]">
+              Goa crew
             </span>
           </div>
 
@@ -66,16 +66,16 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
               <img
                 src={imageSrc}
                 alt={`${displayName}'s photo`}
-                className="h-24 w-24 rounded-3xl object-cover ring-2 ring-white/40 sm:h-36 sm:w-36"
+                className="h-24 w-24 rounded-sm object-cover ring-2 ring-white/70 sm:h-36 sm:w-36"
               />
             </div>
 
-            <h2 className="mt-3 text-xl font-semibold tracking-tight text-white sm:mt-4 sm:text-2xl sm:text-[1.7rem]">
+            <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-white sm:mt-4 sm:text-[1.9rem]">
               {displayName}
             </h2>
             <p className="mt-0.5 text-sm text-white/70">{displayRole}</p>
 
-            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm sm:mt-3">
+            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white sm:mt-3">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
               {builderTitle}
             </div>

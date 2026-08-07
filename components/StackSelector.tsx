@@ -71,14 +71,14 @@ export function StackSelector({ value, onChange, max = 8 }: StackSelectorProps) 
             <span
               key={tag}
               role="listitem"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-sm text-white"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#17372a]/20 bg-[#f4d35e]/30 px-3 py-1 text-sm text-[#17372a]"
             >
               {tag}
               <button
                 type="button"
                 onClick={() => removeTag(tag)}
                 aria-label={`Remove ${tag}`}
-                className="rounded-full text-white/50 transition-colors hover:text-white"
+                className="rounded-full text-[#17372a]/50 transition-colors hover:text-[#17372a]"
               >
                 <X className="h-3 w-3" aria-hidden="true" />
               </button>
@@ -95,7 +95,7 @@ export function StackSelector({ value, onChange, max = 8 }: StackSelectorProps) 
         placeholder={isFull ? `Max ${max} reached` : "Type a skill and press Enter…"}
         disabled={isFull}
         aria-label="Add a stack or skill"
-        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus-visible:border-[#FAE323]/50 focus-visible:ring-2 focus-visible:ring-[#FAE323]/20 disabled:opacity-50"
+        className="w-full rounded-sm border border-[#17372a]/20 bg-[#fff9ed] px-4 py-2.5 text-sm text-[#17372a] placeholder:text-[#17372a]/35 outline-none transition-colors focus-visible:border-[#e46647] focus-visible:ring-2 focus-visible:ring-[#e46647]/20 disabled:opacity-50"
       />
 
       {!isFull && available.length > 0 && (
@@ -105,7 +105,7 @@ export function StackSelector({ value, onChange, max = 8 }: StackSelectorProps) 
               key={suggestion}
               type="button"
               onClick={() => addTag(suggestion)}
-              className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs text-white/60 transition-colors hover:border-white/25 hover:bg-white/[0.06] hover:text-white"
+              className="rounded-full border border-[#17372a]/20 bg-[#fff9ed]/60 px-3 py-1 text-xs text-[#17372a]/65 transition-colors hover:border-[#0B6839] hover:bg-[#8ac9a4]/25 hover:text-[#17372a]"
             >
               + {suggestion}
             </button>

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { ArrowDown, Palmtree } from "lucide-react";
 import { UploadSection } from "@/components/UploadSection";
 import { CropEditor } from "@/components/CropEditor";
 import { ProfileFrame } from "@/components/ProfileFrame";
@@ -77,21 +77,20 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-1 flex-col items-center gap-12 px-6 py-16 sm:py-24">
-      <div className="flex flex-col items-center gap-5 text-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/60 backdrop-blur-sm">
-          <Sparkles className="h-3.5 w-3.5 text-[#FAE323]" aria-hidden="true" />
-          Hacker House Goa 2026
+    <main className="flex flex-1 flex-col items-center gap-10 px-6 py-12 sm:gap-12 sm:py-20">
+      <div className="flex max-w-2xl flex-col items-center gap-5 text-center">
+        <span className="inline-flex items-center gap-2 border border-[#17372a]/25 bg-[#fff9ed] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#17372a]/70">
+          <Palmtree className="h-3.5 w-3.5 text-[#0B6839]" aria-hidden="true" />
+          Hacker House Goa · 2026
         </span>
-        <h1 className="max-w-lg text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
-          Craft your{" "}
-          <span className="bg-gradient-to-r from-[#FAE323] via-[#F7B733] to-[#EA0A60] bg-clip-text text-transparent">
-            Builder ID
-          </span>
+        <h1 className="max-w-xl font-heading text-5xl leading-[0.92] font-semibold tracking-[-0.045em] text-[#17372a] sm:text-7xl">
+          Make your mark<br />
+          <span className="text-[#e46647]">before Goa.</span>
         </h1>
-        <p className="max-w-sm text-balance text-sm text-white/50 sm:text-base">
-          Upload a photo, pick a format, and generate a shareable card before you land in Goa.
+        <p className="max-w-md text-balance text-sm leading-6 text-[#17372a]/70 sm:text-base">
+          Bring your face, your stack, and your curious energy. We’ll make the badge for the people you’re about to meet.
         </p>
+        <ArrowDown className="mt-1 h-4 w-4 text-[#e46647]" aria-hidden="true" />
       </div>
 
       <StepIndicator steps={getSteps(format)} currentKey={step} />
@@ -119,14 +118,14 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-full max-w-sm space-y-6 rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-center backdrop-blur-xl"
+            className="w-full max-w-sm space-y-6 border border-[#17372a]/20 bg-[#fff9ed] p-6 text-center shadow-[6px_6px_0_rgba(23,55,42,0.12)]"
           >
             <div className="flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={croppedImage}
                 alt="Your cropped photo"
-                className="h-20 w-20 rounded-full object-cover ring-1 ring-white/15"
+                className="h-20 w-20 rounded-full object-cover ring-2 ring-[#e46647]/60"
               />
             </div>
 
@@ -134,7 +133,7 @@ export default function Home() {
               <ToggleFormat value={format} onChange={setFormat} />
             </div>
 
-            <p className="text-sm text-white/50">
+            <p className="text-sm text-[#17372a]/65">
               {format === "card"
                 ? "A shareable card with your name, role, and stack."
                 : "A circular frame, ready for your profile picture."}
@@ -167,14 +166,14 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-full max-w-sm space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl"
+            className="w-full max-w-sm space-y-5 border border-[#17372a]/20 bg-[#fff9ed] p-6 shadow-[6px_6px_0_rgba(23,55,42,0.12)]"
           >
             <div className="flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={croppedImage}
                 alt="Your cropped photo"
-                className="h-20 w-20 rounded-full object-cover ring-1 ring-white/15"
+                className="h-20 w-20 rounded-full object-cover ring-2 ring-[#e46647]/60"
               />
             </div>
 

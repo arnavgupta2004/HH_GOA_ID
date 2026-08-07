@@ -22,7 +22,7 @@ export function ToggleFormat({ value, onChange, className }: ToggleFormatProps) 
       role="tablist"
       aria-label="Choose a format"
       className={cn(
-        "inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-sm",
+        "inline-flex items-center border border-[#17372a]/20 bg-[#efe2c9] p-1",
         className,
       )}
     >
@@ -36,14 +36,14 @@ export function ToggleFormat({ value, onChange, className }: ToggleFormatProps) 
             aria-selected={isSelected}
             onClick={() => onChange(option.value)}
             className={cn(
-              "relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-              isSelected ? "text-black" : "text-white/60 hover:text-white",
+              "relative rounded-sm px-4 py-1.5 text-sm font-medium transition-colors",
+              isSelected ? "text-[#fff9ed]" : "text-[#17372a]/60 hover:text-[#17372a]",
             )}
           >
             {isSelected && (
               <motion.span
                 layoutId="toggle-format-pill"
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FAE323] to-[#EA0A60]"
+                className="absolute inset-0 rounded-sm bg-[#e46647]"
                 transition={{ type: "spring", duration: 0.4, bounce: 0.2 }}
               />
             )}

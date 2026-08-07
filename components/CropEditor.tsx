@@ -58,9 +58,9 @@ export function CropEditor({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="w-full max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl"
+      className="w-full max-w-sm border border-[#17372a]/20 bg-[#fff9ed] p-6 shadow-[6px_6px_0_rgba(23,55,42,0.12)]"
     >
-      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-black/60 ring-1 ring-white/10">
+      <div className="relative aspect-square w-full overflow-hidden rounded-sm bg-[#17372a] ring-1 ring-[#17372a]/20">
         <Cropper
           image={imageSrc}
           crop={crop}
@@ -78,7 +78,7 @@ export function CropEditor({
       </div>
 
       <div className="mt-6 flex items-center gap-3">
-        <ZoomIn className="h-4 w-4 shrink-0 text-white/40" aria-hidden="true" />
+        <ZoomIn className="h-4 w-4 shrink-0 text-[#17372a]/50" aria-hidden="true" />
         <Slider
           value={[zoom]}
           min={1}
@@ -95,7 +95,7 @@ export function CropEditor({
           type="button"
           onClick={handleReset}
           aria-label="Reset position and zoom"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#17372a]/50 transition-colors hover:bg-[#efe2c9] hover:text-[#17372a]"
         >
           <RotateCcw className="h-4 w-4" aria-hidden="true" />
         </button>
@@ -111,7 +111,7 @@ export function CropEditor({
           type="button"
           onClick={handleConfirm}
           disabled={!croppedAreaPixels || isProcessing}
-          className="flex-[2]"
+          className="flex-[2] bg-[#0B6839] text-[#fff9ed] hover:bg-[#07552e]"
         >
           {isProcessing ? "Processing…" : "Confirm crop"}
         </Button>

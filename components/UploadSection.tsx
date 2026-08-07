@@ -80,11 +80,11 @@ export function UploadSection({ onImageReady }: UploadSectionProps) {
       onDragLeave={() => setIsDragging(false)}
       onDrop={handleDrop}
       className={cn(
-        "group relative flex w-full max-w-md cursor-pointer flex-col items-center justify-center gap-4 rounded-3xl border border-dashed px-8 py-16 text-center outline-none transition-all duration-200",
-        "border-white/15 bg-white/[0.03] backdrop-blur-xl",
-        "hover:border-white/25 hover:bg-white/[0.05]",
-        "focus-visible:ring-2 focus-visible:ring-[#FAE323]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
-        isDragging && "border-[#16A34A]/60 bg-[#16A34A]/[0.08]",
+        "group relative flex w-full max-w-md cursor-pointer flex-col items-center justify-center gap-4 border-2 border-dashed px-8 py-16 text-center outline-none transition-all duration-200",
+        "border-[#0B6839]/45 bg-[#fff9ed]/80 shadow-[6px_6px_0_rgba(23,55,42,0.12)]",
+        "hover:border-[#0B6839] hover:bg-[#fff9ed] hover:shadow-[8px_8px_0_rgba(228,102,71,0.3)]",
+        "focus-visible:ring-2 focus-visible:ring-[#e46647]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4ead6]",
+        isDragging && "border-[#e46647] bg-[#f4d35e]/20",
       )}
     >
       <input
@@ -103,23 +103,23 @@ export function UploadSection({ onImageReady }: UploadSectionProps) {
 
       <div
         className={cn(
-          "flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0B6839]/40 via-[#0B6839]/10 to-[#EA0A60]/25 ring-1 ring-white/10 transition-transform duration-200",
+          "flex h-16 w-16 items-center justify-center rounded-sm bg-[#0B6839] text-[#fff9ed] transition-transform duration-200",
           "group-hover:scale-105",
         )}
         aria-hidden="true"
       >
         {isProcessing ? (
-          <Loader2 className="h-7 w-7 animate-spin text-white/90" />
+          <Loader2 className="h-7 w-7 animate-spin" />
         ) : (
-          <ImageUp className="h-7 w-7 text-white/90" />
+          <ImageUp className="h-7 w-7" />
         )}
       </div>
 
       <div className="space-y-1">
-        <p className="text-base font-medium text-white">
+        <p className="font-heading text-xl font-semibold text-[#17372a]">
           {isProcessing ? "Preparing your photo…" : "Drop your photo here"}
         </p>
-        <p className="text-sm text-white/50">
+        <p className="text-sm text-[#17372a]/60">
           or click to browse — JPG, PNG, HEIC
         </p>
       </div>

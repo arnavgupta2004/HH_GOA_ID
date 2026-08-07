@@ -18,41 +18,32 @@ function AuroraBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#050608]"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#f4ead6]"
     >
-      <div className="absolute -top-40 -left-32 h-[36rem] w-[36rem] rounded-full bg-[#0B6839]/30 blur-[120px]" />
-      <div className="absolute top-1/4 -right-40 h-[32rem] w-[32rem] rounded-full bg-[#EA0A60]/15 blur-[130px]" />
-      <div className="absolute bottom-[-12rem] left-1/4 h-[30rem] w-[30rem] rounded-full bg-[#FAE323]/[0.08] blur-[140px]" />
-      <div
-        className="absolute inset-0 opacity-[0.12]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.55)_100%)]" />
+      <div className="absolute -top-24 right-[8%] h-72 w-72 rotate-12 rounded-[45%] border-[28px] border-[#f4d35e]/40" />
+      <div className="absolute bottom-[-15rem] -left-24 h-96 w-96 rounded-full bg-[#8ac9a4]/25" />
+      <div className="absolute top-1/3 right-0 h-px w-1/3 bg-[#e46647]/35" />
     </div>
   );
 }
 
 function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-black/40 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-[#17372a]/15 bg-[#f4ead6]/95">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         <div className="flex items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hh-logo.jpg"
             alt="Hacker House Goa 2026"
-            className="h-8 w-8 rounded-lg ring-1 ring-white/15"
+            className="h-8 w-8 rounded-sm ring-1 ring-[#17372a]/20"
           />
-          <span className="text-sm font-semibold tracking-tight text-white">
+          <span className="text-sm font-semibold tracking-tight text-[#17372a]">
             Hacker House Goa
           </span>
         </div>
-        <span className="hidden items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/50 sm:flex">
-          Builder ID Generator
+        <span className="hidden items-center gap-1.5 border border-[#17372a]/20 bg-[#fff9ed] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#17372a]/70 sm:flex">
+          Goa · 2026
         </span>
       </div>
     </header>
@@ -61,7 +52,7 @@ function SiteHeader() {
 
 function SiteFooter() {
   return (
-    <footer className="border-t border-white/[0.06] px-6 py-8 text-center text-xs text-white/35">
+    <footer className="border-t border-[#17372a]/15 px-6 py-8 text-center text-xs text-[#17372a]/55">
       Made for Hacker House Goa 2026 · #FrameInGoa
     </footer>
   );

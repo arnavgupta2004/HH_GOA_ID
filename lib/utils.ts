@@ -16,4 +16,4 @@ export function slugify(value: string): string {
 // Primary CTA treatment shared across buttons — gold-to-magenta gradient
 // lifted from the Hacker House Goa logo.
 export const PRIMARY_CTA_CLASS =
-  "bg-gradient-to-r from-[#FAE323] to-[#EA0A60] text-black shadow-[0_8px_24px_-8px_rgba(234,10,96,0.5)] hover:brightness-105";
+  "rounded-md bg-[#0B6839] text-[#FFF9ED] shadow-[3px_3px_0_#E46647] hover:bg-[#07552e] hover:shadow-[1px_1px_0_#E46647]";
