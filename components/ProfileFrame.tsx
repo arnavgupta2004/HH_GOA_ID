@@ -37,7 +37,7 @@ export const ProfileFrame = forwardRef<HTMLDivElement, ProfileFrameProps>(
           </div>
 
           <div className="flex w-full items-end justify-between text-[#fff9ed]">
-            <p className="max-w-28 font-heading text-lg font-semibold leading-none">Meet me where ideas get sunburnt.</p>
+            <p className="max-w-32 font-heading text-lg font-semibold leading-none">Meet me where ideas get sunburnt.</p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/hh-logo.jpg"

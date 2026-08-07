@@ -61,7 +61,7 @@ function SiteFooter() {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html className={`${inter.variable} h-full antialiased dark`} lang="en">
-      <body className="flex min-h-full flex-col font-sans text-white">
+      <body className="flex min-h-full flex-col font-sans text-[#17372a]">
         <AuroraBackground />
         <TooltipProvider>
           <SiteHeader />

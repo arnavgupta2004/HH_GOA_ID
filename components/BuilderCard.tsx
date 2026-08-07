@@ -63,7 +63,7 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#f4d35e]">
                 Here to build
               </p>
-              <h2 className="mt-1 font-heading text-2xl font-semibold leading-none tracking-tight sm:text-[1.75rem]">
+              <h2 className="mt-1 break-words font-heading text-2xl font-semibold leading-none tracking-tight sm:text-[1.75rem]">
                 {displayName}
               </h2>
             </div>
@@ -73,7 +73,7 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#17372a]/50">
               What I do
             </p>
-            <p className="mt-1 text-base font-semibold leading-tight">{displayRole}</p>
+            <p className="mt-1 break-words text-base font-semibold leading-tight">{displayRole}</p>
             <div className="mt-3 inline-flex items-center gap-1.5 bg-[#f4d35e] px-2.5 py-1 text-xs font-semibold">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
               {builderTitle}
