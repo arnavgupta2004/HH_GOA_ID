@@ -12,7 +12,18 @@ export async function exportNodeToPngBlob(
   const width = node.getBoundingClientRect().width || node.offsetWidth;
   const pixelRatio = Math.max(2, Math.ceil(minWidth / width));
 
-  const blob = await toBlob(node, { pixelRatio, cacheBust: true });
+  const blob = await toBlob(node, {
+    pixelRatio,
+    cacheBust: true,
+    filter: (n: HTMLElement) => {
+      // Avoid letting html-to-image render the photo, which causes
+      // square corners in Safari due to a bug with border-radius and overflow.
+      if (n.tagName === "IMG" && "exportPhoto" in n.dataset) {
+        return false;
+      }
+      return true;
+    },
+  });
   if (!blob) throw new Error("Failed to generate image");
 
   // `html-to-image` occasionally loses data-URL images while cloning a DOM
