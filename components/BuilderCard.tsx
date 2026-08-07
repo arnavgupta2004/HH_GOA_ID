@@ -1,11 +1,13 @@
 import { forwardRef } from "react";
 import { QrCode, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getRoleMeta, type Role } from "@/components/RoleSelector";
 
 export type BuilderCardProps = {
   imageSrc: string;
   name: string;
   role: string;
+  roleType: Role;
   builderTitle: string;
   stack: string[];
   gradientIndex?: number;
@@ -13,9 +15,10 @@ export type BuilderCardProps = {
 };
 
 export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
-  function BuilderCard({ imageSrc, name, role, builderTitle, stack, className }, ref) {
+  function BuilderCard({ imageSrc, name, role, roleType, builderTitle, stack, className }, ref) {
     const displayName = name.trim() || "Your Name";
     const displayRole = role.trim() || "Builder";
+    const roleMeta = getRoleMeta(roleType);
 
     return (
       <div
@@ -47,8 +50,11 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
                 Hacker House<br />Goa 2026
               </p>
             </div>
-            <span className="border border-[#fff9ed]/70 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-[#fff9ed]">
-              Field pass
+            <span
+              style={{ backgroundColor: roleMeta.bg, color: roleMeta.text }}
+              className="px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em]"
+            >
+              {roleMeta.label}
             </span>
           </div>
 

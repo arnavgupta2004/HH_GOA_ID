@@ -54,6 +54,8 @@ function SiteFooter() {
   return (
     <footer className="border-t border-[#17372a]/15 px-6 py-8 text-center text-xs text-[#17372a]/55">
       Made for Hacker House Goa 2026 · #FrameInGoa
+      <br className="sm:hidden" />
+      <span className="sm:before:content-['_·_']">Built by 2:47 PM Studio</span>
     </footer>
   );
 }

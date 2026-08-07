@@ -1,14 +1,18 @@
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { getRoleMeta, type Role } from "@/components/RoleSelector";
 
 export type ProfileFrameProps = {
   imageSrc: string;
+  roleType: Role;
   gradientIndex?: number;
   className?: string;
 };
 
 export const ProfileFrame = forwardRef<HTMLDivElement, ProfileFrameProps>(
-  function ProfileFrame({ imageSrc, className }, ref) {
+  function ProfileFrame({ imageSrc, roleType, className }, ref) {
+    const roleMeta = getRoleMeta(roleType);
+
     return (
       <div
         ref={ref}
@@ -22,11 +26,16 @@ export const ProfileFrame = forwardRef<HTMLDivElement, ProfileFrameProps>(
         <div aria-hidden="true" className="absolute bottom-[15%] left-0 h-px w-full border-t border-dashed border-[#fff9ed]/35" />
 
         <div className="relative flex h-full flex-col items-center px-[9%] pb-[8%] pt-[8%]">
-          <div className="flex w-full items-center justify-between text-[#fff9ed]">
-            <p className="text-[9px] font-bold uppercase tracking-[0.18em]">Hacker House</p>
-            <p className="border border-[#fff9ed]/60 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.14em]">
-              Goa 2026
+          <div className="flex w-full items-start justify-between text-[#fff9ed]">
+            <p className="text-[9px] font-bold uppercase leading-tight tracking-[0.18em]">
+              Hacker House<br />Goa 2026
             </p>
+            <span
+              style={{ backgroundColor: roleMeta.bg, color: roleMeta.text }}
+              className="px-2 py-1 text-[8px] font-bold uppercase tracking-[0.14em]"
+            >
+              {roleMeta.label}
+            </span>
           </div>
 
           <div className="relative mt-auto mb-auto aspect-square w-[72%] rounded-full border-[13px] border-[#f4d35e] bg-[#fff9ed] p-[3%] shadow-[5px_5px_0_rgba(23,55,42,0.35)]">

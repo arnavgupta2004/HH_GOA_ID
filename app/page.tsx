@@ -11,6 +11,7 @@ import { StackSelector } from "@/components/StackSelector";
 import { DownloadButton } from "@/components/DownloadButton";
 import { ShareButton } from "@/components/ShareButton";
 import { ToggleFormat, type Format } from "@/components/ToggleFormat";
+import { RoleSelector, type Role } from "@/components/RoleSelector";
 import { StepIndicator, type StepIndicatorStep } from "@/components/StepIndicator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,6 +38,7 @@ export default function Home() {
   const [rawImage, setRawImage] = useState<string | null>(null);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
   const [format, setFormat] = useState<Format>("profile");
+  const [roleType, setRoleType] = useState<Role>("hacker");
   const cardRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
 
@@ -69,6 +71,7 @@ export default function Home() {
     setRawImage(null);
     setCroppedImage(null);
     setFormat("profile");
+    setRoleType("hacker");
     setName("");
     setRole("");
     setStack([]);
@@ -127,6 +130,13 @@ export default function Home() {
                 alt="Your cropped photo"
                 className="h-20 w-20 rounded-full object-cover ring-2 ring-[#e46647]/60"
               />
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#17372a]/50">
+                I&rsquo;m here as a
+              </p>
+              <RoleSelector value={roleType} onChange={setRoleType} />
             </div>
 
             <div className="flex justify-center">
@@ -235,7 +245,7 @@ export default function Home() {
             transition={{ duration: 0.45, ease: "easeOut" }}
             className="flex w-full max-w-sm flex-col items-center gap-6"
           >
-            <ProfileFrame ref={profileRef} imageSrc={croppedImage} />
+            <ProfileFrame ref={profileRef} imageSrc={croppedImage} roleType={roleType} />
             <div className="flex flex-wrap items-center justify-center gap-3">
               <DownloadButton targetRef={profileRef} filenamePrefix="profile-frame" />
               <ShareButton targetRef={profileRef} filenamePrefix="profile-frame" />
@@ -264,6 +274,7 @@ export default function Home() {
               imageSrc={croppedImage}
               name={name}
               role={role}
+              roleType={roleType}
               builderTitle={builderTitle}
               stack={stack}
             />
