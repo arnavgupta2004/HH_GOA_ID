@@ -27,7 +27,7 @@ export function StepIndicator({ steps, currentKey }: StepIndicatorProps) {
                 aria-current={isActive ? "step" : undefined}
                 className={cn(
                   "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[11px] font-medium transition-colors",
-                  isActive && "border-emerald-400/60 bg-emerald-400/15 text-emerald-300",
+                  isActive && "border-[#FAE323]/60 bg-[#FAE323]/15 text-[#FAE323]",
                   isDone && "border-white/25 bg-white/10 text-white/70",
                   !isActive && !isDone && "border-white/10 text-white/30",
                 )}

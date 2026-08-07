@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getRandomBuilderTitle, type BuilderTitle } from "@/lib/builderTitles";
+import { cn, PRIMARY_CTA_CLASS } from "@/lib/utils";
 
 type Step = "upload" | "crop" | "format" | "details" | "profile" | "card";
 
@@ -79,12 +80,12 @@ export default function Home() {
     <main className="flex flex-1 flex-col items-center gap-12 px-6 py-16 sm:py-24">
       <div className="flex flex-col items-center gap-5 text-center">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/60 backdrop-blur-sm">
-          <Sparkles className="h-3.5 w-3.5 text-emerald-300" aria-hidden="true" />
+          <Sparkles className="h-3.5 w-3.5 text-[#FAE323]" aria-hidden="true" />
           Hacker House Goa 2026
         </span>
         <h1 className="max-w-lg text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
           Craft your{" "}
-          <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-fuchsia-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#FAE323] via-[#F7B733] to-[#EA0A60] bg-clip-text text-transparent">
             Builder ID
           </span>
         </h1>
@@ -151,7 +152,7 @@ export default function Home() {
               <Button
                 type="button"
                 onClick={handleContinueFromFormat}
-                className="flex-[2] bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
+                className={cn("flex-[2]", PRIMARY_CTA_CLASS)}
               >
                 Continue
               </Button>
@@ -219,7 +220,7 @@ export default function Home() {
                 type="button"
                 onClick={() => setStep("card")}
                 disabled={!name.trim()}
-                className="flex-[2] bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
+                className={cn("flex-[2]", PRIMARY_CTA_CLASS)}
               >
                 Generate card
               </Button>

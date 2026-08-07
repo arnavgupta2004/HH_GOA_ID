@@ -95,7 +95,7 @@ export function StackSelector({ value, onChange, max = 8 }: StackSelectorProps) 
         placeholder={isFull ? `Max ${max} reached` : "Type a skill and press Enter…"}
         disabled={isFull}
         aria-label="Add a stack or skill"
-        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus-visible:border-emerald-400/50 focus-visible:ring-2 focus-visible:ring-emerald-400/20 disabled:opacity-50"
+        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus-visible:border-[#FAE323]/50 focus-visible:ring-2 focus-visible:ring-[#FAE323]/20 disabled:opacity-50"
       />
 
       {!isFull && available.length > 0 && (

@@ -4,7 +4,7 @@ import { useCallback, useState, type RefObject } from "react";
 import { toPng } from "html-to-image";
 import { Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { slugify } from "@/lib/utils";
+import { cn, PRIMARY_CTA_CLASS, slugify } from "@/lib/utils";
 
 export type DownloadButtonProps = {
   targetRef: RefObject<HTMLElement | null>;
@@ -62,7 +62,7 @@ export function DownloadButton({
         type="button"
         onClick={handleDownload}
         disabled={isExporting}
-        className="gap-2 bg-gradient-to-r from-teal-300 to-emerald-400 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:brightness-105"
+        className={cn("gap-2", PRIMARY_CTA_CLASS)}
       >
         {isExporting ? (
           <>

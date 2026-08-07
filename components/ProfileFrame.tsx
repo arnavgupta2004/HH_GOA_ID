@@ -45,15 +45,13 @@ export const ProfileFrame = forwardRef<HTMLDivElement, ProfileFrameProps>(
           </div>
         </div>
 
-        <div className="absolute bottom-[3%] left-1/2 -translate-x-1/2">
-          <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/70 px-3.5 py-1.5 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.7)] backdrop-blur-md">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hh-logo.svg"
-              alt="Hacker House Goa 2026"
-              className="h-3.5 w-auto opacity-95"
-            />
-          </div>
+        <div className="absolute bottom-[4%] left-1/2 -translate-x-1/2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hh-logo.jpg"
+            alt="Hacker House Goa 2026"
+            className="h-11 w-11 rounded-xl ring-2 ring-white/70 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.7)] sm:h-12 sm:w-12"
+          />
         </div>
       </div>
     );

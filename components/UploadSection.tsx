@@ -83,8 +83,8 @@ export function UploadSection({ onImageReady }: UploadSectionProps) {
         "group relative flex w-full max-w-md cursor-pointer flex-col items-center justify-center gap-4 rounded-3xl border border-dashed px-8 py-16 text-center outline-none transition-all duration-200",
         "border-white/15 bg-white/[0.03] backdrop-blur-xl",
         "hover:border-white/25 hover:bg-white/[0.05]",
-        "focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
-        isDragging && "border-emerald-400/60 bg-emerald-400/[0.06]",
+        "focus-visible:ring-2 focus-visible:ring-[#FAE323]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+        isDragging && "border-[#16A34A]/60 bg-[#16A34A]/[0.08]",
       )}
     >
       <input
@@ -103,7 +103,7 @@ export function UploadSection({ onImageReady }: UploadSectionProps) {
 
       <div
         className={cn(
-          "flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-400/20 via-cyan-400/10 to-fuchsia-500/20 ring-1 ring-white/10 transition-transform duration-200",
+          "flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0B6839]/40 via-[#0B6839]/10 to-[#EA0A60]/25 ring-1 ring-white/10 transition-transform duration-200",
           "group-hover:scale-105",
         )}
         aria-hidden="true"

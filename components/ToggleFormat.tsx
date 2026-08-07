@@ -43,7 +43,7 @@ export function ToggleFormat({ value, onChange, className }: ToggleFormatProps) 
             {isSelected && (
               <motion.span
                 layoutId="toggle-format-pill"
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-300 to-emerald-400"
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FAE323] to-[#EA0A60]"
                 transition={{ type: "spring", duration: 0.4, bounce: 0.2 }}
               />
             )}

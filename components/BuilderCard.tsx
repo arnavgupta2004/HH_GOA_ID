@@ -31,8 +31,8 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
         style={{ background: getGradient(gradientIndex) }}
       >
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-fuchsia-500/30 blur-3xl" />
-          <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full bg-teal-400/25 blur-3xl" />
+          <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-[#EA0A60]/30 blur-3xl" />
+          <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full bg-[#FAE323]/20 blur-3xl" />
           <div
             className="absolute inset-0 opacity-[0.1]"
             style={{
@@ -47,9 +47,9 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
           <div className="flex items-center justify-between">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/hh-logo.svg"
+              src="/hh-logo.jpg"
               alt="Hacker House Goa 2026"
-              className="h-5 w-auto opacity-90"
+              className="h-8 w-8 rounded-md ring-1 ring-white/25"
             />
             <span className="rounded-full border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/80 backdrop-blur-sm">
               Builder
