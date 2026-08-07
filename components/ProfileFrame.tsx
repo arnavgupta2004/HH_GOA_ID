@@ -41,7 +41,13 @@ export const ProfileFrame = forwardRef<HTMLDivElement, ProfileFrameProps>(
           <div className="relative mt-auto mb-auto aspect-square w-[72%] rounded-full border-[13px] border-[#f4d35e] bg-[#fff9ed] p-[3%] shadow-[5px_5px_0_rgba(23,55,42,0.35)]">
             <div className="h-full w-full overflow-hidden rounded-full border-2 border-[#17372a]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={imageSrc} alt="Profile" className="h-full w-full object-cover" />
+              <img
+                src={imageSrc}
+                alt="Profile"
+                data-export-photo
+                data-export-shape="circle"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
 

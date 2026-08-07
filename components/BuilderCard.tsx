@@ -64,6 +64,7 @@ export const BuilderCard = forwardRef<HTMLDivElement, BuilderCardProps>(
               <img
                 src={imageSrc}
                 alt={`${displayName}'s photo`}
+                data-export-photo
                 className="h-24 w-24 object-cover sm:h-28 sm:w-28"
               />
             </div>
